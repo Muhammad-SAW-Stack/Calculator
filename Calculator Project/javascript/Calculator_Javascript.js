@@ -13,7 +13,7 @@ const Calculator = {
   // this modifies values each time a button is clicked
   function Input_Digit(digit) {
     const { Display_Value, Wait_Second_Operand } = Calculator;
-    // we are checking to see if wait_second_Operand is true and set
+    // we are checking to see if Wait_Second_Operand is true and set
     // Display_Value to the key that was clicked .
     if (Wait_Second_Operand === true) {
       Calculator.Display_Value = digit;
@@ -27,7 +27,7 @@ const Calculator = {
   // this section handles decimal points
   function Input_Decimal(dot) {
     // this ensures that accidental clicking of the decimal point
-    // doesn ' t cause bugs in your operation
+    // doesn't cause bugs in your operation
     if (Calculator.Wait_Second_Operand === true) return;
     if (!Calculator.Display_Value.includes(dot)) {
     // we are saying that if the Display_Value does not contain a decimal point
@@ -59,7 +59,7 @@ function Handle_Operator(Next_Operator) {
         //here we add a fixed amount of numbers after the decimal
         result = Number(result).toFixed(9)
         //this will remove any trailing 0's
-        result = (result * 1).toString ()
+        result = (result * 1).toString()
         Calculator.Display_Value = parseFloat(result);
         Calculator.First_Operand = parseFloat(result);
     
@@ -84,8 +84,8 @@ function Handle_Operator(Next_Operator) {
   }
   // this function updates the screen with the contents of Display_Value
   function Update_Display() {
-    const display = document.queryselector('.calculator-screen');
-    display.value = calculator.Display_Value;
+    const display = document.querySelector('.calculator-screen');
+    display.value = Calculator.Display_Value;
   }
 
   Update_Display();
@@ -95,7 +95,7 @@ function Handle_Operator(Next_Operator) {
     // the target variable is an object that represents the element
     // that was clicked
     const { target } = event;
-    // if the element that was cli cked on is not a button, exit the f unction
+    // if the element that was clicked on is not a button, exit the function
     if (!target.matches('button')) {
       return;
     }
@@ -105,6 +105,7 @@ function Handle_Operator(Next_Operator) {
       Update_Display();
       return;
     }
+    
     if (target.classList.contains('decimal')) {
     Input_Decimal(target.value);
     Update_Display();
